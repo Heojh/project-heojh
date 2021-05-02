@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.rowAmount {
+  text-align: right;
+  margin: 20px 50px 20px 0;
+}
+
+.rowAmount label {
+  margin-right: 10px;
+}
+
 table {
   width: 100%;
 }
