@@ -55,6 +55,8 @@ function App() {
         // boolean 값이 출력되지 않는 문제 -> 문자열로 변경
         let getData = response.data.patient.list;
         for (let i = 0; i < getData.length; i++) {
+          // 생년월일 카테고리의 태어난 시간이 모두 00:00:00 -> 데이터 가독성을 위해 제거
+          getData[i].birthDatetime = getData[i].birthDatetime.substr(0, 10);
           if (getData[i].isDeath === false) {
             getData[i].isDeath = "False";
           } else {
