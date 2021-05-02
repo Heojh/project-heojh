@@ -50,7 +50,19 @@ function App() {
     axios.get(`${URL}/patient/list`).then((response) => {
       if (response.data) {
         // console.log(response.data);
-        setPatientList(response.data.patient.list);
+        // setPatientList(response.data.patient.list);
+
+        // boolean 값이 출력되지 않는 문제 -> 문자열로 변경
+        let getData = response.data.patient.list;
+        for (let i = 0; i < getData.length; i++) {
+          if (getData[i].isDeath === false) {
+            getData[i].isDeath = "False";
+          } else {
+            getData[i].isDeath = "True";
+          }
+        }
+        // console.log(getData);
+        setPatientList(getData);
       } else {
         alert("데이터를 가져오는데 실패했습니다.");
       }
