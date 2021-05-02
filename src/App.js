@@ -44,6 +44,7 @@ const columns = [
 
 function App() {
   let [patientList, setPatientList] = useState([]);
+  let [rowAmount, setRowAmount] = useState(5);
 
   useEffect(() => {
     // 환자 정보 요청 및 응답 데이터 확인
@@ -71,9 +72,24 @@ function App() {
     });
   }, []);
 
+  // row 갯수 선택
+  function onRowHanlder(e) {
+    setRowAmount(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+  }
+
   return (
     <div className="App">
-      <Table dataSource={patientList} columns={columns} scroll={{ y: 240 }} />
+      <div className="rowAmount">
+        <label>row 갯수</label>
+        <input type="text" onChange={onRowHanlder} />
+      </div>
+      <Table
+        dataSource={patientList}
+        columns={columns}
+        pagination={{ pageSize: `${rowAmount}` }}
+        scroll={{ y: 240 }}
+      />
     </div>
   );
 }
